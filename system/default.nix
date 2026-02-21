@@ -4,7 +4,7 @@
     ./desktop.nix
     ./locale.nix
     ./nix.nix
-    ./packages.nix
+    ./programs.nix
     ./users.nix
   ];
 }

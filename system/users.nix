@@ -1,12 +1,13 @@
-{
-  # users.mutableUsers = false;
+{ username, userdesc, ... }:
 
-  users.users.sergey = {
+{
+  users.users.${username} = {
     isNormalUser = true;
-    description = "Сергей";
+    description = "${userdesc}";
     extraGroups = [
       "wheel"
       "docker"
+      "vboxusers"
     ];
   };
 }

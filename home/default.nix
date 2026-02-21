@@ -1,14 +1,14 @@
-{ ... }:
+{ username, ... }:
 
 {
   imports = [
-    ./packages.nix
-    ./configs
+    ./programs
+    ./services
   ];
 
   home = {
-    username = "sergey";
-    homeDirectory = "/home/sergey";
+    username = "${username}";
+    homeDirectory = "/home/${username}";
     stateVersion = "25.11";
   };
 

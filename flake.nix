@@ -12,33 +12,38 @@
 
   outputs =
     { nixpkgs, home-manager, ... }:
+    let
+      system = "x86_64-linux";
+      username = "sergey";
+      userdesc = "Сергей";
+
+      mkHost =
+        hostPath:
+        nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = {
+            inherit username userdesc;
+          };
+
+          modules = [
+            hostPath
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.users.${username} = import ./home;
+              home-manager.extraSpecialArgs = {
+                inherit username;
+              };
+            }
+          ];
+        };
+    in
     {
-      nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/desktop/configuration.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.sergey = import ./home;
-          }
-        ];
-      };
-
-      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/laptop/configuration.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.sergey = import ./home;
-          }
-        ];
-      };
+      nixosConfigurations.nixos = mkHost ./hosts/desktop;
+      nixosConfigurations.nixos-lt = mkHost ./hosts/laptop;
     };
 }

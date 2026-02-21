@@ -1,11 +1,12 @@
 {
   networking.hostName = "nixos";
   networking.useDHCP = false;
+  networking.firewall.enable = false;
 
   systemd.network.enable = true;
   systemd.network.networks."lan" = {
     matchConfig = {
-      Type = "ether";
+      Name = "enp14s0";
     };
 
     networkConfig = {

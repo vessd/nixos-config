@@ -1,12 +1,15 @@
 { pkgs, ... }:
 
 {
-  programs.firefox.enable = true;
+  imports = [
+    ./git.nix
+  ];
+
+  # programs.firefox.enable = true;
   # programs.thunderbird.enable = true;
 
-  # services.yandex-disk.enable = true;
-
   home.packages = with pkgs; [
+    firefox
     homebank
     keepassxc
     mpv
@@ -32,13 +35,13 @@
     nixd
     nixfmt
 
+    gcc
+    pkg-config
+
     cargo
     rustc
     rustfmt
     clippy
     rust-analyzer
-
-    pritunl-client
-    cotp
   ];
 }

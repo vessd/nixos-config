@@ -6,6 +6,9 @@
   virtualisation.docker.enable = true;
   services.flatpak.enable = true;
 
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -34,9 +37,9 @@
 
   programs.bat.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    ncdu
-    ripgrep
-    fd
+  environment.systemPackages = [
+    pkgs.ncdu
+    pkgs.ripgrep
+    pkgs.fd
   ];
 }
