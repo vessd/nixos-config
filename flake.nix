@@ -8,17 +8,31 @@
       # sync pkg versions with `inputs.nixpkgs`
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+
+      # Optional but recommended to limit the size of your system closure.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    {
+      nixpkgs,
+      home-manager,
+      lanzaboote,
+      ...
+    }:
     let
       system = "x86_64-linux";
       username = "sergey";
       userdesc = "Сергей";
 
       mkHost =
-        hostPath:
+        {
+          hostPath,
+          extraModules ? [ ],
+        }:
         nixpkgs.lib.nixosSystem {
           inherit system;
 
@@ -39,11 +53,22 @@
                 inherit username;
               };
             }
-          ];
+          ]
+          ++ extraModules;
         };
     in
     {
-      nixosConfigurations.nixos = mkHost ./hosts/desktop;
-      nixosConfigurations.nixos-lt = mkHost ./hosts/laptop;
+      nixosConfigurations = {
+        nixos = mkHost {
+          hostPath = ./hosts/desktop;
+          extraModules = [
+            lanzaboote.nixosModules.lanzaboote
+          ];
+        };
+
+        nixos-lt = mkHost {
+          hostPath = ./hosts/laptop;
+        };
+      };
     };
 }
