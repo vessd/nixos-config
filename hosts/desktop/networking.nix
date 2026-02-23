@@ -18,5 +18,5 @@
   services.resolved.enable = true;
 
   # networking.proxy.default = "http://user:password@proxy:port/";
-  networking.proxy.noProxy = "127.0.0.0/8,localhost,192.168.1.0/24";
+  networking.proxy.noProxy = "localhost,127.0.0.0/8,192.168.1.0/24";
 }

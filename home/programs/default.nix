@@ -2,7 +2,9 @@
 
 {
   imports = [
+    ./bash.nix
     ./git.nix
+    ./direnv.nix
   ];
 
   # programs.firefox.enable = true;
@@ -34,14 +36,5 @@
     codebook
     nixd
     nixfmt
-
-    gcc
-    pkg-config
-
-    cargo
-    rustc
-    rustfmt
-    clippy
-    rust-analyzer
   ];
 }
