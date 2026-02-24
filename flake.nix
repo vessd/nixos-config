@@ -5,15 +5,13 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
-      # sync pkg versions with `inputs.nixpkgs`
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
-
-      # Optional but recommended to limit the size of your system closure.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
   };
 
   outputs =
@@ -21,6 +19,7 @@
       nixpkgs,
       home-manager,
       lanzaboote,
+      quadlet-nix,
       ...
     }:
     let
@@ -43,14 +42,19 @@
           modules = [
             hostPath
 
+            # TODO: разделить home для каждого host
+            quadlet-nix.nixosModules.quadlet
+
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              home-manager.users.${username} = import ./home;
-              home-manager.extraSpecialArgs = {
-                inherit username;
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.${username} = import ./home;
+                extraSpecialArgs = {
+                  inherit username;
+                  inherit quadlet-nix;
+                };
               };
             }
           ]

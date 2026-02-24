@@ -4,6 +4,7 @@
   services.openssh.enable = true;
   services.printing.enable = true;
   virtualisation.docker.enable = true;
+  virtualisation.quadlet.enable = true;
   services.flatpak.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
@@ -41,5 +42,7 @@
     pkgs.ncdu
     pkgs.ripgrep
     pkgs.fd
+    # https://gitlab.freedesktop.org/pipewire/wireplumber/-/issues/636
+    pkgs.pulseaudio
   ];
 }
