@@ -7,11 +7,9 @@
     ./direnv.nix
   ];
 
-  # programs.firefox.enable = true;
-  # programs.thunderbird.enable = true;
-
   home.packages = with pkgs; [
     firefox
+    thunderbird
     homebank
     keepassxc
     mpv
@@ -28,6 +26,7 @@
     bottom
     p7zip-rar
     docker-compose
+    docker-buildx
     ffmpeg
     shadowsocks-rust
     yt-dlp
