@@ -8,7 +8,8 @@
   services.flatpak.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  # frequent recompilation
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -37,6 +38,7 @@
   };
 
   programs.bat.enable = true;
+  programs.nix-ld.enable = true;
 
   environment.systemPackages = [
     pkgs.ncdu
