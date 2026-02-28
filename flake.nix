@@ -40,6 +40,13 @@
           };
 
           modules = [
+            # Что-то странное?
+            {
+              nixpkgs.overlays = [
+                (import ./pkgs)
+              ];
+            }
+
             hostPath
 
             # TODO: разделить home для каждого host
@@ -52,13 +59,13 @@
                 useUserPackages = true;
                 users.${username} = import ./home;
                 extraSpecialArgs = {
-                  inherit username;
-                  inherit quadlet-nix;
+                  inherit username quadlet-nix;
                 };
               };
             }
           ]
-          ++ extraModules;
+          ++ extraModules
+          ++ import ./modules;
         };
     in
     {
