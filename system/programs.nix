@@ -41,11 +41,13 @@
   programs.nix-ld.enable = true;
 
   programs.assistant.enable = true;
+  # programs.amnezia-vpn.enable = true;
 
   environment.systemPackages = [
     pkgs.ncdu
     pkgs.ripgrep
     pkgs.fd
+    pkgs.dig
     # https://gitlab.freedesktop.org/pipewire/wireplumber/-/issues/636
     pkgs.pulseaudio
   ];
