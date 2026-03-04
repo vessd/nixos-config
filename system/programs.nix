@@ -3,9 +3,19 @@
 {
   services.openssh.enable = true;
   services.printing.enable = true;
-  virtualisation.docker.enable = true;
-  virtualisation.quadlet.enable = true;
   services.flatpak.enable = true;
+
+  virtualisation.docker = {
+    enable = true;
+    extraPackages = [
+      pkgs.docker-compose
+      pkgs.docker-buildx
+    ];
+  };
+  virtualisation.quadlet.enable = true;
+
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   virtualisation.virtualbox.host.enable = true;
   # frequent recompilation
@@ -40,7 +50,7 @@
   programs.bat.enable = true;
   programs.nix-ld.enable = true;
 
-  programs.assistant.enable = true;
+  # programs.assistant.enable = true;
   # programs.amnezia-vpn.enable = true;
 
   environment.systemPackages = [
@@ -48,6 +58,8 @@
     pkgs.ripgrep
     pkgs.fd
     pkgs.dig
+    # для libvirt ?
+    pkgs.dnsmasq
     # https://gitlab.freedesktop.org/pipewire/wireplumber/-/issues/636
     pkgs.pulseaudio
   ];

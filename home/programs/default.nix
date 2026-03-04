@@ -3,8 +3,9 @@
 {
   imports = [
     ./bash.nix
-    ./git.nix
     ./direnv.nix
+    ./distrobox.nix
+    ./git.nix
   ];
 
   home.packages = with pkgs; [
@@ -14,7 +15,6 @@
     keepassxc
     mpv
     qbittorrent
-    pavucontrol
     telegram-desktop
     wireshark
 
@@ -25,10 +25,7 @@
 
     bottom
     p7zip-rar
-    docker-compose
-    docker-buildx
     ffmpeg
-    shadowsocks-rust
     yt-dlp
 
     zed-editor

@@ -8,6 +8,7 @@
       "wheel"
       "docker"
       "vboxusers"
+      "libvirtd"
     ];
   };
 }

@@ -7,7 +7,10 @@
 
   services.openvpn.servers.stilsoft.config = ''
     config /root/nixos/openvpn/stilsoft/ALL_veselkov_s_MAIN.ovpn
+
     auth-user-pass /root/nixos/openvpn/stilsoft/ALL_veselkov_s_MAIN.auth
+    resolv-retry 0
+
     script-security 2
     up ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
     up-restart
@@ -16,10 +19,20 @@
   '';
 
   systemd.services.openvpn-stilsoft = {
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+
     preStart = ''
       PROFILE="/root/nixos/openvpn/stilsoft/ALL_veselkov_s_MAIN"
       ${pkgs.pritunl-openvpn-auth}/bin/pritunl-openvpn-auth "$PROFILE.ovpn" "$PROFILE.otp" > "$PROFILE.auth"
     '';
+
+    serviceConfig = {
+      # Restart = "on-failure";
+      RestartSec = 15;
+      StartLimitIntervalSec = 300;
+      StartLimitBurst = 5;
+    };
   };
 
   environment.systemPackages = [
