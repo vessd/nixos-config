@@ -5,6 +5,7 @@
     ./boot.nix
     ./hardware-configuration.nix
     ./networking.nix
+    ./openvpn.nix
     ./services.nix
     ../../system
   ];
