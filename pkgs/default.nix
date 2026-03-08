@@ -1,4 +1,5 @@
-final: prev: {
-  assistant = prev.callPackage ./assistant/package.nix { };
-  pritunl-openvpn-auth = prev.callPackage ./pritunl-openvpn-auth/package.nix { };
+{ pkgs, ... }:
+{
+  assistant = pkgs.callPackage ./assistant/package.nix { };
+  pritunl-openvpn-auth = pkgs.callPackage ./pritunl-openvpn-auth/package.nix { };
 }

@@ -28,8 +28,11 @@
       system = "x86_64-linux";
       username = "sergey";
       userdesc = "Сергей";
-      pkgsUnstable = import nixpkgs-unstable {
+      pkgs-unstable = import nixpkgs-unstable {
         inherit system;
+      };
+      overlays = import ./overlays {
+        inherit pkgs-unstable;
       };
 
       mkHost =
@@ -45,22 +48,7 @@
           };
 
           modules = [
-            # Что-то странное?
-            {
-              nixpkgs.overlays = [
-                (import ./pkgs)
-                # (final: prev: {
-                #   distrobox = pkgsUnstable.distrobox;
-                # })
-              ];
-            }
-
-            # https://github.com/NixOS/nixpkgs/issues/424333
-            {
-              virtualisation.docker = {
-                package = pkgsUnstable.docker;
-              };
-            }
+            { nixpkgs.overlays = overlays; }
 
             hostPath
 
