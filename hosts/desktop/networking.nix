@@ -19,4 +19,6 @@
 
   # networking.proxy.default = "http://user:password@proxy:port/";
   networking.proxy.noProxy = "localhost,127.0.0.0/8,192.168.1.0/24";
+
+  environment.etc.hosts.enable = false;
 }

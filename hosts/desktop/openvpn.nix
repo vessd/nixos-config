@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
+let
+  is-weekday = pkgs.writeShellScript "is-weekday.sh" ''
+    [ $(date +%u) -le 5 ]
+  '';
+in
 {
   environment.systemPackages = [
     pkgs.update-systemd-resolved
@@ -29,19 +34,8 @@
     '';
 
     serviceConfig = {
-      Restart = lib.mkForce "on-failure";
       RestartSec = 15;
-    };
-
-    wantedBy = lib.mkForce [ ];
-  };
-
-  systemd.timers.openvpn-stilsoft = {
-    wantedBy = [ "timers.target" ];
-
-    timerConfig = {
-      OnCalendar = "Mon..Fri 08:00";
-      Persistent = true;
+      ExecCondition = "${is-weekday}";
     };
   };
 }

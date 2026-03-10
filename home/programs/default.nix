@@ -32,5 +32,7 @@
     codebook
     nixd
     nixfmt
+
+    winboat
   ];
 }
