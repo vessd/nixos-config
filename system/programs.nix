@@ -2,7 +2,6 @@
 
 {
   services.openssh.enable = true;
-  services.printing.enable = true;
   services.flatpak.enable = true;
 
   virtualisation.docker = {

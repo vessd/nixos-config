@@ -3,10 +3,11 @@
 {
   imports = [
     ./boot.nix
+    ./docker.nix
     ./hardware-configuration.nix
     ./networking.nix
     ./openvpn.nix
-    ./services.nix
+    ./printer.nix
     ../../system
   ];
 
