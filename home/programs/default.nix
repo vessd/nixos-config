@@ -4,7 +4,6 @@
   imports = [
     ./bash.nix
     ./direnv.nix
-    ./distrobox.nix
     ./git.nix
   ];
 
@@ -32,7 +31,5 @@
     codebook
     nixd
     nixfmt
-
-    winboat
   ];
 }

@@ -1,14 +1,6 @@
 { pkgs, ... }:
-let
-  is-weekday = pkgs.writeShellScript "is-weekday.sh" ''
-    [ $(date +%u) -le 5 ]
-  '';
-in
-{
-  environment.systemPackages = [
-    pkgs.update-systemd-resolved
-  ];
 
+{
   services.openvpn.servers.stilsoft.config = ''
     config /root/nixos/openvpn/stilsoft/ALL_veselkov_s_MAIN.ovpn
 
@@ -35,7 +27,7 @@ in
 
     serviceConfig = {
       RestartSec = 15;
-      ExecCondition = "${is-weekday}";
+      ExecCondition = "${pkgs.is-weekday}/bin/is-weekday";
     };
   };
 }

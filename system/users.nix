@@ -7,7 +7,6 @@
     extraGroups = [
       "wheel"
       "docker"
-      "vboxusers"
       "libvirtd"
     ];
   };

@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   virtualisation.quadlet = {
     containers.pgadmin = {
@@ -5,7 +6,7 @@
 
       serviceConfig = {
         RestartSec = "30";
-        Restart = "on-failure";
+        ExecCondition = "${pkgs.is-weekday}/bin/is-weekday";
       };
 
       containerConfig = {

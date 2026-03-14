@@ -12,20 +12,10 @@
       pkgs.docker-buildx
     ];
   };
-  virtualisation.podman = {
-    enable = true;
-    extraPackages = [
-      pkgs.podman-compose
-    ];
-  };
   virtualisation.quadlet.enable = true;
 
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
-
-  virtualisation.virtualbox.host.enable = true;
-  # frequent recompilation
-  # virtualisation.virtualbox.host.enableExtensionPack = true;
 
   security.rtkit.enable = true;
   services.pipewire = {

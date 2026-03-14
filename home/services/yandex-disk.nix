@@ -3,7 +3,6 @@
 {
   home.packages = [
     pkgs.yandex-disk
-    pkgs.killall
   ];
 
   home.file.".config/yandex-disk/config.cfg".text = ''
