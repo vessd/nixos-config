@@ -31,5 +31,6 @@
     codebook
     nixd
     nixfmt
+    nix-tree
   ];
 }
