@@ -83,6 +83,15 @@
         nixos-lt = mkHost {
           hostPath = ./hosts/laptop;
         };
+
+        msk-vps = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            { nixpkgs.overlays = overlays; }
+            ./hosts/msk-vps
+          ];
+        };
       };
     };
 }
