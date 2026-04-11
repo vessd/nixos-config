@@ -26,87 +26,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-compat.follows = "flake-compat";
     };
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
   };
 
   outputs =
-    {
-      nixpkgs,
-      nixpkgs-unstable,
-      home-manager,
-      lanzaboote,
-      quadlet-nix,
-      yandex-browser-nix,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-      username = "sergey";
-      userdesc = "Сергей";
-      pkgs-unstable = import nixpkgs-unstable {
-        inherit system;
-      };
-      yandex-browser-pkgs = yandex-browser-nix.packages.${system};
-      overlays = import ./overlays {
-        inherit pkgs-unstable yandex-browser-pkgs;
-      };
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./overlays
 
-      mkHost =
-        {
-          hostPath,
-          extraModules ? [ ],
-        }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
+        inputs.home-manager.flakeModules.home-manager
 
-          specialArgs = {
-            inherit username userdesc;
-          };
+        (inputs.import-tree ./features)
 
-          modules = [
-            { nixpkgs.overlays = overlays; }
-
-            hostPath
-
-            # TODO: разделить home для каждого host
-            quadlet-nix.nixosModules.quadlet
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${username} = import ./home;
-                extraSpecialArgs = {
-                  inherit username quadlet-nix;
-                };
-              };
-            }
-          ]
-          ++ extraModules
-          ++ import ./modules;
-        };
-    in
-    {
-      nixosConfigurations = {
-        nixos = mkHost {
-          hostPath = ./hosts/desktop;
-          extraModules = [
-            lanzaboote.nixosModules.lanzaboote
-          ];
-        };
-
-        nixos-lt = mkHost {
-          hostPath = ./hosts/laptop;
-        };
-
-        msk-vps = nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          modules = [
-            { nixpkgs.overlays = overlays; }
-            ./hosts/msk-vps
-          ];
-        };
-      };
+        ./hosts/desktop
+        ./hosts/laptop
+        ./hosts/msk-vps
+      ];
     };
 }

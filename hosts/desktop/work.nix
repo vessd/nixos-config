@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  virtualisation.docker.daemon.settings = {
+    insecure-registries = [ "192.168.202.252:5012" ];
+  };
+
   services.openvpn.servers.stilsoft.config = ''
     config /root/nixos/openvpn/stilsoft/ALL_veselkov_s_MAIN.ovpn
 

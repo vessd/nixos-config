@@ -1,23 +1,33 @@
-{ username, ... }:
-
 {
-  imports = [
-    ./boot.nix
-    ./docker.nix
-    ./hardware-configuration.nix
-    ./networking.nix
-    ./openvpn.nix
-    ./printer.nix
-    ../../system
-  ];
-
-  services.displayManager.sddm = {
-    wayland.enable = true;
-    settings = {
-      Autologin = {
-        Session = "plasma.desktop";
-        User = "${username}";
-      };
+  inputs,
+  self,
+  ...
+}:
+{
+  flake.nixosConfigurations.nixos = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {
+      inherit inputs self;
     };
+
+    modules = [
+      self.nixosModules.base
+      self.nixosModules.docker
+      self.nixosModules.kde
+      self.nixosModules.perf
+      self.nixosModules.pipewire
+      self.nixosModules.user
+
+      inputs.home-manager.nixosModules.home-manager
+      inputs.lanzaboote.nixosModules.lanzaboote
+      inputs.quadlet-nix.nixosModules.quadlet
+
+      ./boot.nix
+      ./configuration.nix
+      ./hardware-configuration.nix
+      ./home.nix
+      ./networking.nix
+      ./printer.nix
+      ./work.nix
+    ];
   };
 }

@@ -1,0 +1,11 @@
+{
+  flake.nixosModules.base = {
+    programs.htop = {
+      enable = true;
+      settings = {
+        hide_kernel_threads = true;
+        hide_userland_threads = true;
+      };
+    };
+  };
+}
