@@ -8,6 +8,7 @@
   ];
 
   home.packages = with pkgs; [
+    yandex-browser-stable
     firefox
     thunderbird
     homebank

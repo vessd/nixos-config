@@ -16,17 +16,16 @@
       }
     },
     "flake-compat": {
-      "flake": false,
       "locked": {
-        "lastModified": 1761588595,
-        "narHash": "sha256-XKUZz9zewJNUj46b4AJdiRZJAvSZ0Dqj2BNfXvFlJC4=",
-        "owner": "edolstra",
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
+        "owner": "NixOS",
         "repo": "flake-compat",
-        "rev": "f387cd2afec9419c8ee37694406ca490c3f34ee5",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
         "type": "github"
       },
       "original": {
-        "owner": "edolstra",
+        "owner": "NixOS",
         "repo": "flake-compat",
         "type": "github"
       }
@@ -132,7 +131,9 @@
     },
     "pre-commit": {
       "inputs": {
-        "flake-compat": "flake-compat",
+        "flake-compat": [
+          "flake-compat"
+        ],
         "gitignore": "gitignore",
         "nixpkgs": [
           "lanzaboote",
@@ -170,11 +171,13 @@
     },
     "root": {
       "inputs": {
+        "flake-compat": "flake-compat",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "quadlet-nix": "quadlet-nix"
+        "quadlet-nix": "quadlet-nix",
+        "yandex-browser-nix": "yandex-browser-nix"
       }
     },
     "rust-overlay": {
@@ -195,6 +198,29 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "yandex-browser-nix": {
+      "inputs": {
+        "flake-compat": [
+          "flake-compat"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775695056,
+        "narHash": "sha256-e3VLTf33nX0Mkh2JvIkIGkJr+BnFBpxWdYPXqYewVgk=",
+        "owner": "miuirussia",
+        "repo": "yandex-browser.nix",
+        "rev": "334d5a928d1bf24e410e3113cefbb03ade2efe14",
+        "type": "github"
+      },
+      "original": {
+        "owner": "miuirussia",
+        "repo": "yandex-browser.nix",
         "type": "github"
       }
     }
