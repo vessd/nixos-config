@@ -20,5 +20,7 @@
           "wheel"
         ];
       };
+
+      config.programs.nh.flake = "/home/${userName}/.config/nixos";
     };
 }
