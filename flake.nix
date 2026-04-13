@@ -28,22 +28,27 @@
     };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:vic/import-tree";
   };
 
   outputs =
     inputs:
+    let
+      inherit (inputs.nixpkgs) lib;
+      inherit (lib.fileset) toList fileFilter;
+
+      isNixModule = file: file.hasExt "nix";
+      importTree = path: toList (fileFilter isNixModule path);
+    in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./overlays
 
         inputs.home-manager.flakeModules.home-manager
 
-        (inputs.import-tree ./features)
-
         ./hosts/desktop
         ./hosts/laptop
         ./hosts/msk-vps
-      ];
+      ]
+      ++ importTree ./features;
     };
 }
