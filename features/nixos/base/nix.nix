@@ -14,6 +14,11 @@
         clean.extraArgs = "--keep-since 21d --keep 3";
       };
 
+      environment.variables = {
+        # use elevation without password prompt for remote hosts with NOPASSWD configured
+        NH_ELEVATION_STRATEGY = "passwordless";
+      };
+
       # environment.systemPackages = [
       #   pkgs.nix-output-monitor
       #   pkgs.dix
