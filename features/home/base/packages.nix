@@ -19,7 +19,7 @@
         hunspellDicts.en_US
 
         bottom
-        p7zip-rar
+        unrar
         ffmpeg
         yt-dlp
 

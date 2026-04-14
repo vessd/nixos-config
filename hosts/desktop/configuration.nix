@@ -11,9 +11,12 @@
 
   services.openssh.enable = true;
   virtualisation.quadlet.enable = true;
+  programs.nix-ld.enable = true;
+
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
-  programs.nix-ld.enable = true;
+  virtualisation.vmware.host.enable = true;
+
   # programs.assistant.enable = true;
 
   environment.systemPackages = [
