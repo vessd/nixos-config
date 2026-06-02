@@ -3,7 +3,6 @@
     { pkgs, ... }:
     {
       home.packages = with pkgs; [
-        yandex-browser-stable
         firefox
         thunderbird
         homebank
@@ -28,6 +27,8 @@
         nixd
         nixfmt
         nix-tree
+
+        octaveFull
       ];
     };
 }

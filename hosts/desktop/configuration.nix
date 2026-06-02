@@ -16,4 +16,6 @@
   virtualisation.vmware.host.enable = true;
 
   # programs.assistant.enable = true;
+  programs.steam.enable = true;
+  services.flatpak.enable = true;
 }
