@@ -18,4 +18,20 @@
   # programs.assistant.enable = true;
   programs.steam.enable = true;
   services.flatpak.enable = true;
+
+  services.udisks2.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        subject.isInGroup("wheel") &&
+        (
+          action.id == "org.freedesktop.udisks2.filesystem-mount" ||
+          action.id == "org.freedesktop.udisks2.filesystem-mount-system" ||
+          action.id == "org.freedesktop.udisks2.filesystem-mount-other-seat"
+        )
+      ) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
 }

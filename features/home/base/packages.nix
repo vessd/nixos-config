@@ -27,8 +27,6 @@
         nixd
         nixfmt
         nix-tree
-
-        octaveFull
       ];
     };
 }

@@ -14,13 +14,13 @@ in
     useUserPackages = true;
     users.${userName} = {
       imports = [
+        inputs.quadlet-nix.homeManagerModules.quadlet
+
         self.homeModules.base
         self.homeModules.pgadmin
         self.homeModules.work
         self.homeModules.xray
         self.homeModules.yandex-disk
-
-        inputs.quadlet-nix.homeManagerModules.quadlet
       ];
 
       home = {
