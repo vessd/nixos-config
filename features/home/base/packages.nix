@@ -27,6 +27,9 @@
         nixd
         nixfmt
         nix-tree
+
+        v2rayn
+        xray
       ];
     };
 }
