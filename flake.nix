@@ -35,7 +35,6 @@
 
         ./hosts/desktop
         ./hosts/laptop
-        ./hosts/msk-vps
       ]
       ++ importTree ./features;
     };

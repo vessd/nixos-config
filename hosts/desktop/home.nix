@@ -19,7 +19,6 @@ in
         self.homeModules.base
         self.homeModules.pgadmin
         self.homeModules.work
-        self.homeModules.xray
         self.homeModules.yandex-disk
       ];
 
