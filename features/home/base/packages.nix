@@ -10,7 +10,6 @@
         mpv
         qbittorrent
         telegram-desktop
-        wireshark
 
         libreoffice-qt
         hunspell

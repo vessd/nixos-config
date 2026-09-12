@@ -34,4 +34,9 @@
       ExecCondition = "${pkgs.is-weekday}/bin/is-weekday";
     };
   };
+
+  environment.systemPackages = [
+    pkgs.wireshark
+    pkgs.kdePackages.krdc
+  ];
 }

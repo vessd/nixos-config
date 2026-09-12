@@ -16,6 +16,7 @@
       self.nixosModules.perf
       self.nixosModules.pipewire
       self.nixosModules.user
+      self.nixosModules.wireshark
 
       inputs.home-manager.nixosModules.home-manager
       inputs.lanzaboote.nixosModules.lanzaboote
