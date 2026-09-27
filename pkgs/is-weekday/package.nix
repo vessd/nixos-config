@@ -1,5 +1,5 @@
 { writeShellScriptBin }:
 
 writeShellScriptBin "is-weekday" ''
-  [ $(date +%u) -le 5 ]
+  [ -e /run/force-weekday ] || [ "$(date +%u)" -le 5 ]
 ''
