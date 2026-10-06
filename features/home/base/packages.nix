@@ -15,6 +15,7 @@
         hunspell
         hunspellDicts.ru_RU
         hunspellDicts.en_US
+        corefonts
 
         bottom
         unrar
