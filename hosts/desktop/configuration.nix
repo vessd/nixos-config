@@ -34,4 +34,9 @@
       }
     });
   '';
+
+  services.xray = {
+    enable = true;
+    settingsFile = "/home/sergey/.config/xray-core/config/client.json";
+  };
 }
