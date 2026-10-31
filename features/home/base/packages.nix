@@ -27,6 +27,9 @@
         nixd
         nixfmt
         nix-tree
+
+        claude-code
+        kimi-code
       ];
     };
 }
