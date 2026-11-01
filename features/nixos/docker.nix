@@ -5,7 +5,7 @@
   ...
 }:
 let
-  user = lib.attrByPath [ "preferences" "user" "name" ] null config;
+  user = config.preferences.user.name or null;
 in
 {
   virtualisation.docker = {
