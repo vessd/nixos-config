@@ -20,22 +20,16 @@
 
   outputs =
     inputs:
-    let
-      inherit (inputs.nixpkgs) lib;
-      inherit (lib.fileset) toList fileFilter;
-
-      isNixModule = file: file.hasExt "nix";
-      importTree = path: toList (fileFilter isNixModule path);
-    in
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./overlays
 
         inputs.home-manager.flakeModules.home-manager
 
+        ./features
+
         ./hosts/desktop
         ./hosts/laptop
-      ]
-      ++ importTree ./features;
+      ];
     };
 }

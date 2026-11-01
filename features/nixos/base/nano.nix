@@ -1,13 +1,11 @@
 {
-  flake.nixosModules.base = {
-    programs.nano = {
-      enable = true;
-      nanorc = ''
-        set autoindent
-        set tabsize 4
-        set tabstospaces
-        set linenumbers
-      '';
-    };
+  programs.nano = {
+    enable = true;
+    nanorc = ''
+      set autoindent
+      set tabsize 4
+      set tabstospaces
+      set linenumbers
+    '';
   };
 }

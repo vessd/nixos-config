@@ -1,26 +1,24 @@
 {
-  flake.homeModules.base = {
-    programs.git = {
-      enable = true;
+  programs.git = {
+    enable = true;
 
-      ignores = [
-        ".vscode"
-        ".zed"
-        "*.docx"
-        ".~lock*"
-        "*.pdf"
-        "*.bin"
-      ];
+    ignores = [
+      ".vscode"
+      ".zed"
+      "*.docx"
+      ".~lock*"
+      "*.pdf"
+      "*.bin"
+    ];
 
-      attributes = [ "Cargo.lock -diff" ];
+    attributes = [ "Cargo.lock -diff" ];
 
-      settings = {
-        user = {
-          name = "Sergey Veselkov";
-          email = "veselkovsd@yandex.ru";
-        };
-        push.autoSetupRemote = true;
+    settings = {
+      user = {
+        name = "Sergey Veselkov";
+        email = "veselkovsd@yandex.ru";
       };
+      push.autoSetupRemote = true;
     };
   };
 }

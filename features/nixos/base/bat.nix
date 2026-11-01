@@ -1,10 +1,8 @@
 {
-  flake.nixosModules.base = {
-    programs.bat = {
-      enable = true;
-      settings = {
-        style = "plain";
-      };
+  programs.bat = {
+    enable = true;
+    settings = {
+      style = "plain";
     };
   };
 }

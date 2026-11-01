@@ -1,37 +1,34 @@
+{ pkgs, ... }:
 {
-  flake.homeModules.base =
-    { pkgs, ... }:
-    {
-      home.packages = with pkgs; [
-        firefox
-        thunderbird
-        homebank
-        keepassxc
-        mpv
-        qbittorrent
-        telegram-desktop
+  home.packages = with pkgs; [
+    firefox
+    thunderbird
+    homebank
+    keepassxc
+    mpv
+    qbittorrent
+    telegram-desktop
 
-        libreoffice-qt
-        hunspell
-        hunspellDicts.ru_RU
-        hunspellDicts.en_US
-        corefonts
+    libreoffice-qt
+    hunspell
+    hunspellDicts.ru_RU
+    hunspellDicts.en_US
+    corefonts
 
-        bottom
-        unrar
-        ffmpeg
-        yt-dlp
+    bottom
+    unrar
+    ffmpeg
+    yt-dlp
 
-        zed-editor
-        codebook
-        nixd
-        nixfmt
-        nix-tree
+    zed-editor
+    codebook
+    nixd
+    nixfmt
+    nix-tree
 
-        quickemu
+    quickemu
 
-        claude-code
-        kimi-code
-      ];
-    };
+    claude-code
+    kimi-code
+  ];
 }
