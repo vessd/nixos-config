@@ -1,5 +1,12 @@
 { config, ... }:
 {
+  preferences.user = {
+    name = "sergey";
+    fullName = "Сергей";
+  };
+
+  programs.nh.flake = "/home/${config.preferences.user.name}/.config/nixos";
+
   services.displayManager.sddm = {
     settings = {
       Autologin = {
@@ -35,6 +42,6 @@
 
   services.xray = {
     enable = true;
-    settingsFile = "/home/sergey/.config/xray-core/config/client.json";
+    settingsFile = "/home/${config.preferences.user.name}/.config/xray-core/config/client.json";
   };
 }

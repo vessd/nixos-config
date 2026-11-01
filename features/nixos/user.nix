@@ -1,26 +1,28 @@
 {
   flake.nixosModules.user =
-    { lib, ... }:
+    { lib, config, ... }:
     let
-      userName = "sergey";
-      userDesc = "Сергей";
+      cfg = config.preferences.user;
     in
     {
-      options.preferences = {
-        user.name = lib.mkOption {
+      options.preferences.user = {
+        name = lib.mkOption {
           type = lib.types.str;
-          default = "${userName}";
+        };
+
+        fullName = lib.mkOption {
+          type = lib.types.str;
         };
       };
 
-      config.users.users.${userName} = {
-        isNormalUser = true;
-        description = "${userDesc}";
-        extraGroups = [
-          "wheel"
-        ];
+      config = {
+        users.users.${cfg.name} = {
+          isNormalUser = true;
+          description = cfg.fullName;
+          extraGroups = [
+            "wheel"
+          ];
+        };
       };
-
-      config.programs.nh.flake = "/home/${userName}/.config/nixos";
     };
 }
