@@ -13,8 +13,6 @@
   virtualisation.quadlet.enable = true;
   programs.nix-ld.enable = true;
 
-  virtualisation.vmware.host.enable = true;
-
   # programs.assistant.enable = true;
   programs.steam.enable = true;
   services.flatpak.enable = true;

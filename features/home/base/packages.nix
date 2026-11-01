@@ -28,6 +28,8 @@
         nixfmt
         nix-tree
 
+        quickemu
+
         claude-code
         kimi-code
       ];
