@@ -14,46 +14,16 @@ let
       files = nixFiles dir;
 
       rel = path: lib.removePrefix "${toString dir}/" (toString path);
+      nameOf = path: lib.removeSuffix ".nix" (lib.head (lib.splitString "/" (rel path)));
 
-      entryOf =
-        path:
-        let
-          parts = lib.splitString "/" (rel path);
-          top = builtins.head parts;
-        in
-        if lib.length parts == 1 then
-          {
-            name = lib.removeSuffix ".nix" top;
-            direct = true;
-          }
-        else
-          {
-            name = top;
-            direct = false;
-          };
-
-      grouped = builtins.foldl' (
-        acc: path:
-        let
-          entry = entryOf path;
-          current = acc.${entry.name} or {
-            direct = entry.direct;
-            files = [ ];
-          };
-        in
-        acc // {
-          ${entry.name} = current // {
-            files = current.files ++ [ path ];
-          };
-        }
-      ) { } files;
+      grouped = lib.groupBy nameOf files;
 
       asModule =
-        _: group:
-        if group.direct && lib.length group.files == 1 then
-          import (builtins.head group.files)
+        _: paths:
+        if lib.length paths == 1 && !lib.hasInfix "/" (rel (lib.head paths)) then
+          import (lib.head paths)
         else
-          { imports = group.files; };
+          { imports = paths; };
     in
     lib.mapAttrs asModule grouped;
 in
