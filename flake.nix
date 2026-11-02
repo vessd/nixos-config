@@ -15,6 +15,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
+    disko = {
+      url = "git+https://github.com/nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +45,7 @@
         ./features
         ./hosts/desktop
         ./hosts/laptop
+        ./hosts/nas
       ];
 
       perSystem =
