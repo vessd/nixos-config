@@ -21,14 +21,18 @@
       inputs.home-manager.nixosModules.home-manager
       inputs.lanzaboote.nixosModules.lanzaboote
       inputs.quadlet-nix.nixosModules.quadlet
+      inputs.agenix.nixosModules.default
+      inputs.agenix-rekey.nixosModules.default
 
+      ./agenix.nix
       ./boot.nix
       ./configuration.nix
       ./hardware-configuration.nix
       ./home.nix
       ./networking.nix
       ./printer.nix
-      ./work.nix
+      ./work
+      ./xray
     ];
   };
 }

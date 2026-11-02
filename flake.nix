@@ -15,22 +15,40 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix-rekey = {
+      url = "github:oddlama/agenix-rekey";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+
       flake.nixosModules.base.imports = import ./modules;
       imports = [
-        ./overlays
-
         inputs.home-manager.flakeModules.home-manager
+        inputs.agenix-rekey.flakeModule
 
+        ./overlays
         ./features
-
         ./hosts/desktop
         ./hosts/laptop
       ];
+
+      perSystem =
+        { pkgs, config, ... }:
+        {
+          devShells.default = pkgs.mkShell {
+            packages = [ config.agenix-rekey.package ];
+          };
+        };
     };
 }

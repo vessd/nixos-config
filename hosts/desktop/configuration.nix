@@ -38,9 +38,4 @@
       }
     });
   '';
-
-  services.xray = {
-    enable = true;
-    settingsFile = "/home/${config.preferences.user.name}/.config/xray-core/config/client.json";
-  };
 }

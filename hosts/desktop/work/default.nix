@@ -1,14 +1,19 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
+  age.secrets = {
+    openvpn-config.rekeyFile = ./openvpn-config.age;
+    openvpn-otp.rekeyFile = ./openvpn-otp.age;
+  };
+
   virtualisation.docker.daemon.settings = {
     insecure-registries = [ "192.168.202.252:5012" ];
   };
 
   services.openvpn.servers.stilsoft.config = ''
-    config /root/nixos/openvpn/stilsoft/ALL_veselkov_s_MAIN.ovpn
+    config ${config.age.secrets.openvpn-config.path}
 
-    auth-user-pass /root/nixos/openvpn/stilsoft/ALL_veselkov_s_MAIN.auth
+    auth-user-pass /run/openvpn-stilsoft/auth
     resolv-retry 0
 
     script-security 2
@@ -25,13 +30,18 @@
     startLimitBurst = 5;
 
     preStart = ''
-      PROFILE="/root/nixos/openvpn/stilsoft/ALL_veselkov_s_MAIN"
-      ${pkgs.pritunl-openvpn-auth}/bin/pritunl-openvpn-auth "$PROFILE.ovpn" "$PROFILE.otp" > "$PROFILE.auth"
+      umask 077
+      ${pkgs.pritunl-openvpn-auth}/bin/pritunl-openvpn-auth \
+        "${config.age.secrets.openvpn-config.path}" \
+        "${config.age.secrets.openvpn-otp.path}" \
+        > /run/openvpn-stilsoft/auth
     '';
 
     serviceConfig = {
       RestartSec = 15;
       ExecCondition = "${pkgs.is-weekday}/bin/is-weekday";
+      RuntimeDirectory = "openvpn-stilsoft";
+      RuntimeDirectoryMode = "0700";
     };
   };
 
