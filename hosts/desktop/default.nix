@@ -10,6 +10,12 @@
     };
 
     modules = [
+      inputs.home-manager.nixosModules.home-manager
+      inputs.lanzaboote.nixosModules.lanzaboote
+      inputs.quadlet-nix.nixosModules.quadlet
+      inputs.agenix.nixosModules.default
+      inputs.agenix-rekey.nixosModules.default
+
       self.nixosModules.base
       self.nixosModules.docker
       self.nixosModules.kde
@@ -17,12 +23,6 @@
       self.nixosModules.pipewire
       self.nixosModules.user
       self.nixosModules.wireshark
-
-      inputs.home-manager.nixosModules.home-manager
-      inputs.lanzaboote.nixosModules.lanzaboote
-      inputs.quadlet-nix.nixosModules.quadlet
-      inputs.agenix.nixosModules.default
-      inputs.agenix-rekey.nixosModules.default
 
       ./agenix.nix
       ./boot.nix
