@@ -20,7 +20,6 @@
   virtualisation.quadlet.enable = true;
   programs.nix-ld.enable = true;
 
-  # programs.assistant.enable = true;
   programs.steam.enable = true;
   services.flatpak.enable = true;
 

@@ -21,6 +21,7 @@
   outputs =
     inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      flake.nixosModules.base.imports = import ./modules;
       imports = [
         ./overlays
 

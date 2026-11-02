@@ -1,3 +1,3 @@
 [
-  ./programs/assistant.nix
+
 ]
