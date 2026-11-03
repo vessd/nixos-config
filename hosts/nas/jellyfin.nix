@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+  uid = 970;
+  gid = uid;
+in
 {
   services.jellyfin = {
     enable = true;
@@ -16,6 +20,7 @@
 
     transcoding = {
       enableHardwareEncoding = true;
+      enableIntelLowPowerEncoding = true;
       hardwareDecodingCodecs = {
         h264 = true;
         hevc = true;
@@ -24,23 +29,36 @@
       };
       hardwareEncodingCodecs = {
         hevc = true;
-        av1 = true;
       };
     };
   };
 
   hardware.graphics = {
     enable = true;
-    extraPackages = [ pkgs.intel-media-driver ];
+    extraPackages = [
+      pkgs.intel-media-driver
+      pkgs.vpl-gpu-rt
+    ];
   };
 
   users.users.jellyfin = {
-    uid = 970;
+    uid = uid;
     extraGroups = [
       "render"
       "video"
     ];
   };
 
-  users.groups.jellyfin.gid = 970;
+  users.groups.jellyfin.gid = gid;
+
+  fileSystems."/var/cache/jellyfin/transcodes" = {
+    fsType = "tmpfs";
+    options = [
+      "mode=0700"
+      "uid=${toString uid}"
+      "gid=${toString gid}"
+    ];
+  };
+
+  systemd.services.jellyfin.unitConfig.RequiresMountsFor = [ "/var/cache/jellyfin/transcodes" ];
 }

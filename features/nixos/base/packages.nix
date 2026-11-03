@@ -4,6 +4,7 @@
   services.speechd.enable = lib.mkForce false;
 
   environment.systemPackages = [
+    pkgs.pciutils
     pkgs.ncdu
     pkgs.ripgrep
     pkgs.fd
