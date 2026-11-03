@@ -36,7 +36,6 @@
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
-      flake.nixosModules.base.imports = import ./modules;
       imports = [
         inputs.home-manager.flakeModules.home-manager
         inputs.agenix-rekey.flakeModule
