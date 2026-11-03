@@ -15,7 +15,6 @@
 
       self.nixosModules.base
 
-      ./boot.nix
       ./configuration.nix
       ./disko.nix
       ./hardware-configuration.nix

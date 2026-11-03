@@ -1,5 +1,12 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
+  home.packages = [
+    pkgs.firefox
+    pkgs.thunderbird
+    pkgs.element-desktop
+    pkgs.wireshark
+    pkgs.kdePackages.krdc
+  ];
+
   programs.git = {
     includes = [
       {
@@ -8,6 +15,4 @@
       }
     ];
   };
-
-  home.packages = [ pkgs.element-desktop ];
 }

@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    firefox
-    thunderbird
-    homebank
     keepassxc
     mpv
     qbittorrent
@@ -25,10 +22,5 @@
     nixd
     nixfmt
     nix-tree
-
-    quickemu
-
-    claude-code
-    kimi-code
   ];
 }

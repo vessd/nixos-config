@@ -6,6 +6,7 @@
       ".vscode"
       ".zed"
       "*.docx"
+      "*.odt"
       ".~lock*"
       "*.pdf"
       "*.bin"

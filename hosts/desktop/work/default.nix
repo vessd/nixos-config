@@ -1,13 +1,13 @@
 { pkgs, config, ... }:
 
 {
+  virtualisation.docker.daemon.settings = {
+    insecure-registries = [ "192.168.202.252:5012" ];
+  };
+
   age.secrets = {
     openvpn-config.rekeyFile = ./openvpn-config.age;
     openvpn-otp.rekeyFile = ./openvpn-otp.age;
-  };
-
-  virtualisation.docker.daemon.settings = {
-    insecure-registries = [ "192.168.202.252:5012" ];
   };
 
   services.openvpn.servers.stilsoft.config = ''
@@ -44,9 +44,4 @@
       RuntimeDirectoryMode = "0700";
     };
   };
-
-  environment.systemPackages = [
-    pkgs.wireshark
-    pkgs.kdePackages.krdc
-  ];
 }

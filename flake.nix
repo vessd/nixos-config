@@ -42,9 +42,7 @@
 
         ./overlays
         ./features
-        ./hosts/desktop
-        ./hosts/laptop
-        ./hosts/nas
+        ./hosts
       ];
 
       perSystem =

@@ -2,6 +2,7 @@
   self,
   inputs,
   config,
+  pkgs,
   ...
 }:
 let
@@ -18,8 +19,9 @@ in
 
         self.homeModules.base
         self.homeModules.pgadmin
-        self.homeModules.work
         self.homeModules.yandex-disk
+
+        ./work/home.nix
       ];
 
       home = {
@@ -29,6 +31,13 @@ in
           "${homeDir}/.local/bin"
         ];
         stateVersion = "25.11";
+
+        packages = with pkgs; [
+          homebank
+          quickemu
+          claude-code
+          kimi-code
+        ];
       };
     };
     extraSpecialArgs = {
