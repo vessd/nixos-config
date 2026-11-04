@@ -27,6 +27,10 @@
       url = "github:oddlama/agenix-rekey";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     llm-agents.url = "github:numtide/llm-agents.nix";
   };
@@ -43,13 +47,18 @@
         ./overlays
         ./features
         ./hosts
+        ./deploy
       ];
 
       perSystem =
         { pkgs, config, ... }:
         {
           devShells.default = pkgs.mkShell {
-            packages = [ config.agenix-rekey.package ];
+            packages = [
+              config.agenix-rekey.package
+              pkgs.nixos-anywhere
+              pkgs.deploy-rs
+            ];
           };
         };
     };
