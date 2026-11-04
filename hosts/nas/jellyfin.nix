@@ -4,6 +4,8 @@ let
   gid = uid;
 in
 {
+  environment.systemPackages = [ pkgs.jellyfin-link ];
+
   services.jellyfin = {
     enable = true;
     openFirewall = true;
