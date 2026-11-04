@@ -53,6 +53,8 @@
       perSystem =
         { pkgs, config, ... }:
         {
+          # nix build .#package
+          packages = import ./pkgs { inherit pkgs; };
           devShells.default = pkgs.mkShell {
             packages = [
               config.agenix-rekey.package
