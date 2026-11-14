@@ -9,10 +9,6 @@
       }
     ];
 
-    packages = [
-      "ru.yandex.Browser"
-    ];
-
     update.auto = {
       enable = true;
       onCalendar = "weekly";

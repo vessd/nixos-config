@@ -16,8 +16,10 @@ in
     users.${userName} = {
       imports = [
         inputs.quadlet-nix.homeManagerModules.quadlet
+        inputs.nix-flatpak.homeManagerModules.nix-flatpak
 
         self.homeModules.base
+        self.homeModules.flatpak
         self.homeModules.pgadmin
         self.homeModules.yandex-disk
 
