@@ -21,7 +21,6 @@
   programs.nix-ld.enable = true;
 
   programs.steam.enable = true;
-  services.flatpak.enable = true;
 
   services.udisks2.enable = true;
   security.polkit.extraConfig = ''

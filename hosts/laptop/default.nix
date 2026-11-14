@@ -8,11 +8,13 @@
     modules = [
       self.nixosModules.base
       self.nixosModules.docker
+      self.nixosModules.flatpak
       self.nixosModules.kde
       self.nixosModules.pipewire
       self.nixosModules.user
 
       inputs.home-manager.nixosModules.home-manager
+      inputs.nix-flatpak.nixosModules.nix-flatpak
 
       ./configuration.nix
       ./hardware-configuration.nix

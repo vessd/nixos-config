@@ -16,7 +16,7 @@
     };
     quadlet-nix.url = "github:SEIAROTg/quadlet-nix";
     disko = {
-      url = "git+https://github.com/nix-community/disko";
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -31,6 +31,7 @@
       url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
     llm-agents.url = "github:numtide/llm-agents.nix";
   };

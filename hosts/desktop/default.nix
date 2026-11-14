@@ -15,9 +15,11 @@
       inputs.quadlet-nix.nixosModules.quadlet
       inputs.agenix.nixosModules.default
       inputs.agenix-rekey.nixosModules.default
+      inputs.nix-flatpak.nixosModules.nix-flatpak
 
       self.nixosModules.base
       self.nixosModules.docker
+      self.nixosModules.flatpak
       self.nixosModules.kde
       self.nixosModules.perf
       self.nixosModules.pipewire
