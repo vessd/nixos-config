@@ -20,7 +20,6 @@ in
 
         self.homeModules.base
         self.homeModules.flatpak
-        self.homeModules.pgadmin
         self.homeModules.yandex-disk
 
         ./work/home.nix
