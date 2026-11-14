@@ -23,6 +23,7 @@
       self.nixosModules.kde
       self.nixosModules.perf
       self.nixosModules.pipewire
+      self.nixosModules.udisks
       self.nixosModules.user
       self.nixosModules.wireshark
 
