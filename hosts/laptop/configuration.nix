@@ -1,9 +1,4 @@
 {
-  preferences.user = {
-    name = "sergey";
-    fullName = "Сергей";
-  };
-
   networking.hostName = "nixos-lt";
   networking.networkmanager.enable = true;
 

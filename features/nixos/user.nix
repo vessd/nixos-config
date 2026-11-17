@@ -6,10 +6,12 @@ in
   options.preferences.user = {
     name = lib.mkOption {
       type = lib.types.str;
+      default = "sergey";
     };
 
     fullName = lib.mkOption {
       type = lib.types.str;
+      default = "Сергей";
     };
   };
 
@@ -21,7 +23,5 @@ in
         "wheel"
       ];
     };
-
-    programs.nh.flake = "/home/${cfg.name}/.config/nixos";
   };
 }

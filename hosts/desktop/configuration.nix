@@ -1,17 +1,12 @@
 { config, ... }:
 {
-  preferences.user = {
-    name = "sergey";
-    fullName = "Сергей";
-  };
-
   programs.nh.flake = "/home/${config.preferences.user.name}/.config/nixos";
 
   services.displayManager.sddm = {
     settings = {
       Autologin = {
         Session = "plasma.desktop";
-        User = "${config.preferences.user.name}";
+        User = config.preferences.user.name;
       };
     };
   };
