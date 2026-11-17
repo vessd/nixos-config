@@ -1,14 +1,16 @@
 { inputs, ... }:
 let
-  pkgs-local = final: prev: import ../pkgs { pkgs = final; };
-  pkgs-unstable =
+  local = final: prev: import ../pkgs { pkgs = final; };
+  unstable-picks =
     final: prev:
     let
-      system = final.stdenv.hostPlatform.system;
-      pkgs-unstable = inputs.nixpkgs-unstable.legacyPackages.${system};
+      pkgs-unstable = import inputs.nixpkgs-unstable {
+        system = final.stdenv.hostPlatform.system;
+        # config.allowUnfree = true;
+      };
     in
     {
-
+      # jellyfin = pkgs-unstable.jellyfin;
     };
   llm-agents =
     final: prev:
@@ -22,8 +24,8 @@ let
 in
 {
   flake.nixosModules.base.nixpkgs.overlays = [
-    pkgs-local
-    pkgs-unstable
+    local
+    unstable-picks
     llm-agents
   ];
 }
