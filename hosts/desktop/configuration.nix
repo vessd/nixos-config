@@ -12,6 +12,7 @@
   };
 
   virtualisation.quadlet.enable = true;
+  services.flatpak.enable = true;
   programs.nix-ld.enable = true;
 
   programs.steam.enable = true;
